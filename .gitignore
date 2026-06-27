@@ -1,0 +1,28 @@
+# Build
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+.factorypath
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Logs
+*.log
+
+# Segredos / credenciais — NUNCA commitar (ver docs/06 e docs/08)
+.env
+application-local.properties
+application-secret.properties
+*-key.json
+service-account*.json
+credentials*.json
+*.pem
