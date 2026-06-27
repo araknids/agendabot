@@ -8,6 +8,25 @@ com seu código) e deixa por último o que você já domina (lógica em Java).
 
 ---
 
+## Status atual (entregue e testado)
+
+- **M1 — Webhook/Echo** ✅ verificação, recebimento e envio implementados e testados.
+- **M2 — Bot entende** ✅ máquina de estados + interpretação, com IA via `StubAgenteIA`
+  (determinística). Falta plugar o **LLM real** (decisão D10).
+- **M3 — Bot marca** ✅ cálculo de horários livres + marcação, via `AgendaEmMemoria`.
+  Falta plugar o **Google Agenda real** ([08](08-setup-google-agenda.md)).
+- **M4 — Dono vê** ✅ aviso pro dono no fluxo de confirmação.
+
+Cobertura: testes unitários (parser, client, IA stub, agenda, máquina de estados) +
+integração (webhook + fluxo completo de agendamento ponta a ponta).
+
+**Pendências externas (dependem de você):** escolher provedor de IA + chave; setup Meta +
+ngrok ([06](06-setup-whatsapp.md)); service account do Google ([08](08-setup-google-agenda.md)).
+Em produção, lembrar da **janela de 24h** pro aviso do dono
+([09](09-pegadinhas.md#1--a-janela-de-24h-do-whatsapp-a-que-mais-dói)).
+
+---
+
 ## Milestone 1 — Echo bot 🔌
 
 **Meta:** você manda "oi" no WhatsApp e o bot responde "oi" de volta.

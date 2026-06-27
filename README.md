@@ -29,7 +29,32 @@ nichos que **agendam** (mecânica, salão, barbearia, etc.).
 
 ## Como rodar
 
-⏳ Em breve — será preenchido no **Milestone 1** (echo bot funcionando).
+Pré-requisitos: **Java 21** e **Maven**.
+
+```bash
+mvn test            # roda os testes (unitários + integração)
+mvn spring-boot:run # sobe a app na porta 8080
+```
+
+- Health: `GET http://localhost:8080/health` → `{"status":"UP"}`
+- Webhook (verificação do Meta): `GET /webhook?hub.mode=subscribe&hub.verify_token=...&hub.challenge=...`
+- Webhook (mensagens): `POST /webhook` com o payload do WhatsApp.
+
+Credenciais reais via variável de ambiente (nunca no código):
+`WHATSAPP_VERIFY_TOKEN`, `WHATSAPP_ACCESS_TOKEN`, `WHATSAPP_PHONE_NUMBER_ID`.
+Pra testar de verdade no WhatsApp, siga o [docs/06](docs/06-setup-whatsapp.md) (Meta + ngrok).
+
+## Estado atual (o que é real × stub)
+
+| Peça | Hoje | Pra produção |
+|------|------|--------------|
+| Webhook + envio WhatsApp | ✅ real (Cloud API) | — |
+| Máquina de estados da conversa | ✅ real, testada | — |
+| Entendimento (IA) | 🟡 `StubAgenteIA` (regra determinística) | adaptador LLM (decisão D10) |
+| Agenda | 🟡 `AgendaEmMemoria` | adaptador Google Agenda ([docs/08](docs/08-setup-google-agenda.md)) |
+
+As duas peças 🟡 ficam atrás de interface (`AgenteIA`, `Agenda`) — trocar pela versão real
+não mexe no resto do bot.
 
 ## Princípio que rege tudo
 
